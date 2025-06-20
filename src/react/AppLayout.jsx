@@ -1,23 +1,22 @@
-import React from 'react'
-
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import WholeBody from './Components/WholeBody'
+
 import {
-  Stack,
-  Typography,
+  BottomNavigation,
+  BottomNavigationAction,
   Container,
   Paper,
-  BottomNavigation,
-  BottomNavigationAction
+  Stack,
+  Typography
 } from '@mui/material'
 
 import {
-  HealthAndSafety as HomeIcon,
   Pets as CatIcon,
+  HealthAndSafety as HomeIcon,
   Person4 as ProfileIcon
 } from '@mui/icons-material'
 
-import AppRoutes from './AppRoutes'
 
 import AppLogo from '../assets/favicon.svg'
 
@@ -66,7 +65,7 @@ const AppLayout = () => {
             }}
           />
           <Typography variant="h5">
-            My Mobile Health App
+            SantéDanse
           </Typography>
         </Stack>
         <Paper
@@ -95,7 +94,7 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
-            <AppRoutes />
+            <WholeBody />
             <BottomNavigation
               showLabels
               value={navigationIndex}

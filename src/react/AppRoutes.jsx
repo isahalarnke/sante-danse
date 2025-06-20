@@ -1,9 +1,8 @@
-import React from 'react'
 
 import { Route, Routes } from 'react-router-dom'
 
-import Home from './Pages/Home'
 import CatNames from './Pages/CatNames/CatNames'
+import Home from './Pages/Home'
 import Profile from './Pages/Profile/Profile'
 import ProfileOverview from './Pages/Profile/ProfileOverview'
 import ProfileSettings from './Pages/Profile/ProfileSettings'

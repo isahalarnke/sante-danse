@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Stack, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
 const Home = () => (
   <Stack
@@ -13,6 +14,13 @@ const Home = () => (
     >
       Welcome to the App
     </Typography>
+    <Box
+      sx={{
+        width: theme => theme.spacing(20),
+        height: theme => theme.spacing(20),
+        marginBottom: 4
+      }}
+    />
   </Stack>
 )
 
