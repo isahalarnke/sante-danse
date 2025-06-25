@@ -8,7 +8,6 @@ import { CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import AppLayout from './AppLayout'
-import Cat from './Cat'
 
 const theme = createTheme({
   components: {

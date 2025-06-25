@@ -15,14 +15,14 @@ const ProfileSettings = () => {
       <Typography
         variant="h4"
       >
-        Here are your Settings
+        Test
       </Typography>
       <Button
         variant="contained"
         startIcon={<BackIcon />}
         onClick={() => navigate('/profile')}
       >
-        Go back to Profile Overview
+        Test
       </Button>
     </>
   )

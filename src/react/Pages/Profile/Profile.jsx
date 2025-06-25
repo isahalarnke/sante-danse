@@ -17,7 +17,7 @@ const Profile = () => (
     <Typography
       variant="h4"
     >
-      Your Profile
+      Test Test Test
     </Typography>
     <Stack
       width="100%"

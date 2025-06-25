@@ -21,7 +21,7 @@ const ProfileOverview = () => {
         startIcon={<SettingsIcon />}
         onClick={() => navigate('/profile/settings')}
       >
-        Go to Settings
+        Test Test Test
       </Button>
     </Stack>
   )
