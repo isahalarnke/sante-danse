@@ -2,8 +2,9 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Stack, Button } from '@mui/material'
-import { AppSettingsAlt as SettingsIcon } from '@mui/icons-material'
+import { Stack } from '@mui/material'
+import PrimaryButton from '../../Components/Buttons/PrimaryButton'
+import BackButton from '../../Components/Buttons/BackButton'
 
 const ProfileOverview = () => {
   const navigate = useNavigate()
@@ -16,13 +17,18 @@ const ProfileOverview = () => {
         justifyContent: 'center'
       }}
     >
-      <Button
+      <BackButton
         variant="contained"
-        startIcon={<SettingsIcon />}
-        onClick={() => navigate('/profile/settings')}
+        onClick={() => navigate('/home')}
       >
-        Test Test Test
-      </Button>
+        Zurück
+      </BackButton>
+      <PrimaryButton
+        variant="contained"
+        onClick={() => navigate('/auswertung/settings')}
+      >
+        Med Team Bestätigen
+      </PrimaryButton>
     </Stack>
   )
 }

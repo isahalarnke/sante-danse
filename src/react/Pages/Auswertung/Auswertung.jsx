@@ -17,7 +17,7 @@ const Auswertung = () => (
     <Typography
       variant="h4"
     >
-      Test Test Test
+      Auswertung Schmerztagebuch
     </Typography>
     <Stack
       width="100%"
