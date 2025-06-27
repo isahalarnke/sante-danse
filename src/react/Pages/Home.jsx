@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Stack, Typography } from '@mui/material'
-import { Box } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 
 const Home = () => (
   <Stack

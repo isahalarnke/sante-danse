@@ -1,6 +1,5 @@
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-
-import WholeBody from './Components/WholeBody'
 
 import {
   BottomNavigation,
@@ -17,8 +16,8 @@ import {
   Person4 as ProfileIcon
 } from '@mui/icons-material'
 
-
 import AppLogo from '../assets/favicon.svg'
+import BodyClick from './Pages/BodyClick'
 
 const borderRadius = 6
 
@@ -94,7 +93,7 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
-            <WholeBody />
+            <BodyClick />
             <BottomNavigation
               showLabels
               value={navigationIndex}
