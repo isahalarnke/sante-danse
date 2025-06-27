@@ -1,27 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ShinRight = ({ width, height, onClick, style, isClicked }) => (
+const FootRight = ({ width, height, onClick, style, isClicked }) => (
   <svg
     width={width}
     height={height}
     onClick={onClick}
     style={style}
-    viewBox="0 0 29 87"
-    fill={isClicked ? 'pink' : 'none'}
+    viewBox="0 0 29 38"
+    fill={isClicked ? 'orange' : 'none'}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M8 0.5L5 2L2.5 5L1 9.5V14.5V21V27V32.5V35V39V43.5V47.5V51.5V56V60V64V68V72L2.5 77L5 80.5L8 84.5L12 86L16 81.5L17.5 77L19 72L20 65.5L21 60L23 53L24.5 45L26 39L27.5 35L28.5 27V21V14.5L27.5 7.5L26 3.5L24.5 2L22 0.5H17.5H14H12H8Z"
+      d="M9.5 1H5L1 7V9.5V15.5V21.5L4 28.5L7 33L9.5 37.5H15.5H22L28 35V31L24 25.5L19 19.5L15.5 13V7L13 3.5L9.5 1Z"
       stroke="black"
     />
   </svg>
 )
-ShinRight.propTypes = {
+FootRight.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   style: PropTypes.any.isRequired,
   isClicked: PropTypes.bool.isRequired
 }
-export default ShinRight
+export default FootRight

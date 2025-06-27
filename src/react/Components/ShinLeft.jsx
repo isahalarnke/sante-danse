@@ -1,19 +1,27 @@
-import React from "react"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const ShinLeft = ({width, height, onClick, style, isClicked}) => (
-    <svg
-        width={width}
-        height={height}
-        onClick={onClick}
-        style={style}
-        viewBox="0 0 27 92"
-        fill={isClicked ? "pink" : "none"}
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <path
-            d="M13.5 0.5H11.9471C7.70659 0.5 3.84754 2.94898 2.04196 6.78584C1.35579 8.24395 1 9.83558 1 11.4471V17V27.5L2.5 40C3.49861 46.3245 4.96809 52.5656 6.89619 58.6713L7 59L9.5 68L12.5 77L14.8224 84.8963C14.9406 85.298 15.0942 85.6884 15.2814 86.0628L16.2801 88.0601C17.8894 91.2788 22.1391 92.0494 24.7761 89.6007C25.8754 88.58 26.5 87.1476 26.5 85.6475V77V65.5V49.5V38V27.5V17V11.1132C26.5 9.71724 26.2336 8.33406 25.7152 7.03791L25.6019 6.75463C24.8829 4.95731 23.6553 3.40873 22.0695 2.29863C20.3971 1.12794 18.405 0.5 16.3636 0.5H13.5Z"
-            stroke="black"
-        />
-    </svg>
+const ShinLeft = ({ width, height, onClick, style, isClicked }) => (
+  <svg
+    width={width}
+    height={height}
+    onClick={onClick}
+    style={style}
+    viewBox="0 0 27 92"
+    fill={isClicked ? 'pink' : 'none'}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.5 0.5H11.9471C7.70659 0.5 3.84754 2.94898 2.04196 6.78584C1.35579 8.24395 1 9.83558 1 11.4471V17V27.5L2.5 40C3.49861 46.3245 4.96809 52.5656 6.89619 58.6713L7 59L9.5 68L12.5 77L14.8224 84.8963C14.9406 85.298 15.0942 85.6884 15.2814 86.0628L16.2801 88.0601C17.8894 91.2788 22.1391 92.0494 24.7761 89.6007C25.8754 88.58 26.5 87.1476 26.5 85.6475V77V65.5V49.5V38V27.5V17V11.1132C26.5 9.71724 26.2336 8.33406 25.7152 7.03791L25.6019 6.75463C24.8829 4.95731 23.6553 3.40873 22.0695 2.29863C20.3971 1.12794 18.405 0.5 16.3636 0.5H13.5Z"
+      stroke="black"
+    />
+  </svg>
 )
+ShinLeft.propTypes = {
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  style: PropTypes.any.isRequired,
+  isClicked: PropTypes.bool.isRequired
+}
 export default ShinLeft
