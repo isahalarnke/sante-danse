@@ -2,33 +2,25 @@ import React from 'react'
 
 import { Stack } from '@mui/material'
 
-import PrimaryButton from '../../Components/Buttons/PrimaryButton'
-
-import useRandomCatNameAsync from '../../../hooks/useRandomCatNameAsync'
-
-const CatNames = () => {
-  const { catName, refreshCatName } = useRandomCatNameAsync()
-
-  return (
+const Home = () => (
+  <Stack sx={{ flex: '1 1 auto' }}>
+    <h2 style={{ textAlign: 'center' }}>Home Screen Mit Body</h2>
     <Stack
       sx={{
-        flex: ' 1 1 auto',
+        flex: 1,
+        width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'black',
+        color: 'white',
+        borderRadius: 3,
+        margin: 0,
+        height: 250
       }}
     >
-      <h2>Home Screen Mit Body</h2>
-      <h4>
-        {catName}
-      </h4>
-      <PrimaryButton
-        variant="contained"
-        onClick={() => refreshCatName()}
-      >
-        Primary Button
-      </PrimaryButton>
+      <h4>Platzhalter für Körper Komponente</h4>
     </Stack>
-  )
-}
+  </Stack>
+)
 
-export default CatNames
+export default Home
