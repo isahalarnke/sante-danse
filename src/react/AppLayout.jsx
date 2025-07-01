@@ -16,9 +16,8 @@ import {
   Person4 as ProfileIcon
 } from '@mui/icons-material'
 
-import BodyClick from './Pages/BodyClick'
-import AppRoutes from './AppRoutes'
 import AppLogo from '../assets/favicon.png'
+import AppRoutes from './AppRoutes'
 
 const borderRadius = 6
 
@@ -94,7 +93,7 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
-            <BodyClick />
+            <AppRoutes />
             <BottomNavigation
               showLabels
               value={navigationIndex}
