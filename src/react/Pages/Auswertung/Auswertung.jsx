@@ -8,7 +8,7 @@ const Auswertung = () => (
   <Stack
     sx={{
       width: '100%',
-      height: '100%',
+      flexGrow: 1,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 2
@@ -21,9 +21,10 @@ const Auswertung = () => (
     </Typography>
     <Stack
       width="100%"
-      height="100%"
+      sx={{
+        flexGrow: 1
+      }}
     >
-      {/* Sub-Routes of /profile like /profile/settings will mount here */}
       <Outlet />
     </Stack>
   </Stack>

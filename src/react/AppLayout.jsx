@@ -77,7 +77,6 @@ const AppLayout = () => {
             paddingRight: 1,
             paddingBottom: 2,
             paddingLeft: 1,
-            overflow: 'hidden',
             borderRadius: theme => theme.spacing(borderRadius),
             background: theme => theme.palette.grey[900]
           }}
