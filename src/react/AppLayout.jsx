@@ -66,7 +66,7 @@ const AppLayout = () => {
             }}
           />
           <Typography variant="h5">
-            My Mobile Health App
+            DANSE SANTE
           </Typography>
         </Stack>
         <Paper

@@ -17,7 +17,7 @@ const CatNames = () => {
         alignItems: 'center'
       }}
     >
-      <h2>Cat Name Generator</h2>
+      <h2>Home Screen Mit Body</h2>
       <h4>
         {catName}
       </h4>
