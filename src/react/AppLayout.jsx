@@ -16,8 +16,9 @@ import {
   Person4 as ProfileIcon
 } from '@mui/icons-material'
 
-import AppLogo from '../assets/favicon.svg'
 import BodyClick from './Pages/BodyClick'
+import AppRoutes from './AppRoutes'
+import AppLogo from '../assets/favicon.png'
 
 const borderRadius = 6
 
@@ -26,8 +27,8 @@ const AppLayout = () => {
   const navigate = useNavigate()
 
   let navigationIndex = 0
-  if (location.pathname.startsWith('/catnames')) navigationIndex = 1
-  if (location.pathname.startsWith('/profile')) navigationIndex = 2
+  if (location.pathname.startsWith('/home')) navigationIndex = 1
+  if (location.pathname.startsWith('/auswertung')) navigationIndex = 2
 
   return (
     <Stack
@@ -100,19 +101,19 @@ const AppLayout = () => {
               sx={{ width: '100%' }}
             >
               <BottomNavigationAction
-                label="Home"
+                label="Stundenplan"
                 icon={<HomeIcon />}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/stundenplan')}
               />
               <BottomNavigationAction
-                label="Cat Names"
+                label="Home"
                 icon={<CatIcon />}
-                onClick={() => navigate('/catnames')}
+                onClick={() => navigate('/home')}
               />
               <BottomNavigationAction
-                label="Profile"
+                label="Auswertung"
                 icon={<ProfileIcon />}
-                onClick={() => navigate('/profile')}
+                onClick={() => navigate('/auswertung')}
               />
             </BottomNavigation>
           </Stack>
