@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 import { Stack, Typography } from '@mui/material'
 
-const Profile = () => (
+const Auswertung = () => (
   <Stack
     sx={{
       width: '100%',
@@ -17,7 +17,7 @@ const Profile = () => (
     <Typography
       variant="h4"
     >
-      Your Profile
+      Auswertung Schmerztagebuch
     </Typography>
     <Stack
       width="100%"
@@ -29,4 +29,4 @@ const Profile = () => (
   </Stack>
 )
 
-export default Profile
+export default Auswertung

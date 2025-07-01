@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Stack, Button } from '@mui/material'
+import { Stack } from '@mui/material'
+
+import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 
 import useRandomCatNameAsync from '../../../hooks/useRandomCatNameAsync'
 
@@ -15,16 +17,16 @@ const CatNames = () => {
         alignItems: 'center'
       }}
     >
-      <h2>Cat Name Generator</h2>
+      <h2>Home Screen Mit Body</h2>
       <h4>
         {catName}
       </h4>
-      <Button
+      <PrimaryButton
         variant="contained"
         onClick={() => refreshCatName()}
       >
-        Change Cat Name
-      </Button>
+        Primary Button
+      </PrimaryButton>
     </Stack>
   )
 }

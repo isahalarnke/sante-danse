@@ -2,8 +2,11 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Typography, Button } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { ArrowBack as BackIcon } from '@mui/icons-material'
+
+import PrimaryButton from '../../Components/Buttons/PrimaryButton'
+import BackButton from '../../Components/Buttons/BackButton'
 
 const ProfileSettings = () => {
   const navigate = useNavigate()
@@ -15,15 +18,23 @@ const ProfileSettings = () => {
       <Typography
         variant="h4"
       >
-        Here are your Settings
+        QR CODE EINSCANNEN
       </Typography>
-      <Button
+      <Box>
+        <PrimaryButton
+          variant="contained"
+          onClick={() => navigate('/auswertung/settings')}
+        >
+          Durch Med Team Bestätigen Lassen
+        </PrimaryButton>
+      </Box>
+      <BackButton
         variant="contained"
         startIcon={<BackIcon />}
         onClick={() => navigate('/profile')}
       >
-        Go back to Profile Overview
-      </Button>
+        Zurück
+      </BackButton>
     </>
   )
 }

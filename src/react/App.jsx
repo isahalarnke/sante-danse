@@ -38,6 +38,7 @@ root.render(
     <CssBaseline />
     <Router>
       <AppLayout />
+      {/* <Cat name="Blue" /> */}
     </Router>
   </ThemeProvider>
 )

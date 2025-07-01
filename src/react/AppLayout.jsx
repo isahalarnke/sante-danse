@@ -66,7 +66,7 @@ const AppLayout = () => {
             }}
           />
           <Typography variant="h5">
-            My Mobile Health App
+            DANSE SANTE
           </Typography>
         </Stack>
         <Paper
@@ -102,19 +102,19 @@ const AppLayout = () => {
               sx={{ width: '100%' }}
             >
               <BottomNavigationAction
-                label="Home"
+                label="Stundenplan"
                 icon={<HomeIcon />}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/stundenplan')}
               />
               <BottomNavigationAction
-                label="Cat Names"
+                label="Home"
                 icon={<CatIcon />}
-                onClick={() => navigate('/catnames')}
+                onClick={() => navigate('/home')}
               />
               <BottomNavigationAction
-                label="Profile"
+                label="Auswertung"
                 icon={<ProfileIcon />}
-                onClick={() => navigate('/profile')}
+                onClick={() => navigate('/auswertung')}
               />
             </BottomNavigation>
           </Stack>
