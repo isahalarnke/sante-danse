@@ -9,16 +9,24 @@ import AuswertungStart from './Pages/Auswertung/AuswertungStart'
 import MedTeamBestätigung from './Pages/Auswertung/MedTeamBestätigung'
 
 import Error404 from './Pages/Error404'
+import AppLayout from './AppLayout'
 
 const AppRoutes = () => (
   <Routes>
+    {/* Public Landing Page */}
     <Route path="/" element={<Welcome />} />
-    <Route path="/home" element={<Home />} />
-    <Route path="/auswertung" element={<Auswertung />}>
-      <Route path="" element={<AuswertungStart />} />
-      <Route path="medteam" element={<MedTeamBestätigung />} />
+
+    {/* AppLayout für "echte" Appseiten */}
+    <Route path="/" element={<AppLayout />}>
+      <Route path="home" element={<Home />} />
+      <Route path="stundenplan" element={<Stundenplan />} />
+      <Route path="auswertung" element={<Auswertung />}>
+        <Route index element={<AuswertungStart />} />
+        <Route path="medteam" element={<MedTeamBestätigung />} />
+      </Route>
     </Route>
-    <Route path="/stundenplan" element={<Stundenplan />} />
+
+    {/* Fallback */}
     <Route path="*" element={<Error404 />} />
   </Routes>
 )
