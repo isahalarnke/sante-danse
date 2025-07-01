@@ -25,7 +25,7 @@ const ProfileOverview = () => {
       </BackButton>
       <PrimaryButton
         variant="contained"
-        onClick={() => navigate('/auswertung/settings')}
+        onClick={() => navigate('/auswertung/medteam')}
       >
         Med Team Bestätigen
       </PrimaryButton>

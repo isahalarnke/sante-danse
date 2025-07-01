@@ -19,7 +19,7 @@ import {
 
 import AppRoutes from './AppRoutes'
 
-import AppLogo from '../assets/favicon.svg'
+import AppLogo from '../assets/favicon.png'
 
 const borderRadius = 6
 
@@ -28,8 +28,8 @@ const AppLayout = () => {
   const navigate = useNavigate()
 
   let navigationIndex = 0
-  if (location.pathname.startsWith('/catnames')) navigationIndex = 1
-  if (location.pathname.startsWith('/profile')) navigationIndex = 2
+  if (location.pathname.startsWith('/home')) navigationIndex = 1
+  if (location.pathname.startsWith('/auswertung')) navigationIndex = 2
 
   return (
     <Stack

@@ -23,7 +23,7 @@ const ProfileSettings = () => {
       <Box>
         <PrimaryButton
           variant="contained"
-          onClick={() => navigate('/auswertung/settings')}
+          onClick={() => navigate('/auswertung/medteam')}
         >
           Durch Med Team Bestätigen Lassen
         </PrimaryButton>
@@ -31,7 +31,7 @@ const ProfileSettings = () => {
       <BackButton
         variant="contained"
         startIcon={<BackIcon />}
-        onClick={() => navigate('/profile')}
+        onClick={() => navigate('/auswertung')}
       >
         Zurück
       </BackButton>
