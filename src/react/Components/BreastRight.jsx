@@ -1,0 +1,27 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const BreastRight = ({ width, height, onClick, style, isClicked }) => (
+  <svg
+    width={width}
+    height={height}
+    onClick={onClick}
+    style={style}
+    viewBox="0 0 46 50"
+    fill={isClicked ? 'blue' : 'none'}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M37.852 3.35397L38.7148 3.88125C41.4772 5.56938 43.5323 8.20344 44.498 11.2934C45.1557 13.3984 45.282 15.6334 44.8656 17.799L43.3532 25.6635C43.1183 26.8851 43 28.1262 43 29.3701C43 34.5756 40.9321 39.5679 37.2513 43.2487L36.7838 43.7162C34.948 45.552 32.7505 46.9859 30.3308 47.9269C26.8562 49.2782 23.0573 49.5613 19.4208 48.7402L14.7411 47.6835C11.3247 46.912 8.19253 45.1156 5.78767 42.5693C2.73206 39.3339 1 35.0208 1 30.5706C1 28.5392 1.35513 26.5234 2.04935 24.6143L6.532 12.287C6.84351 11.4303 7.22239 10.5997 7.66507 9.80288L7.6902 9.75764C8.88262 7.61129 10.5252 5.74822 12.5052 4.29622C15.4255 2.15466 18.9525 1 22.5739 1H25H29.4857C32.4379 1 35.3329 1.81454 37.852 3.35397Z"
+      stroke="black"
+    />
+  </svg>
+)
+BreastRight.propTypes = {
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  style: PropTypes.any.isRequired,
+  isClicked: PropTypes.bool.isRequired
+}
+export default BreastRight
