@@ -11,9 +11,9 @@ import {
 } from '@mui/material'
 
 import {
-  Pets as CatIcon,
-  HealthAndSafety as HomeIcon,
-  Person4 as ProfileIcon
+  CalendarMonth as KalenderIcon,
+  AccessibilityNew as HomeIcon,
+  Leaderboard as AuswertungIcon
 } from '@mui/icons-material'
 
 import AppLogo from '../assets/favicon.png'
@@ -100,17 +100,17 @@ const AppLayout = () => {
             >
               <BottomNavigationAction
                 label="Stundenplan"
-                icon={<HomeIcon />}
+                icon={<KalenderIcon />}
                 onClick={() => navigate('/stundenplan')}
               />
               <BottomNavigationAction
                 label="Home"
-                icon={<CatIcon />}
+                icon={<HomeIcon />}
                 onClick={() => navigate('/home')}
               />
               <BottomNavigationAction
                 label="Auswertung"
-                icon={<ProfileIcon />}
+                icon={<AuswertungIcon />}
                 onClick={() => navigate('/auswertung')}
               />
             </BottomNavigation>
