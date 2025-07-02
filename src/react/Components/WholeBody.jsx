@@ -25,10 +25,13 @@ const WholeBody = ({ clickedBodyPart, setClickedBodyPart, onClick }) => {
     <div
       style={{
         position: 'relative',
-        width: 300,
+        width: '100%',
+        maxWidth: '300px',
+        paddingBottom: '200%',
         height: 600,
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
       <BodyShape width={224} height={568} />
