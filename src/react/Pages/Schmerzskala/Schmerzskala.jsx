@@ -59,7 +59,7 @@ const Schmerzskala = ({ onCancel, onSubmit }) => {
             min={0}
             max={10}
             step={1}
-            marks={[{ value: 0, label: '0' }, { value: 5, label: '5' }, { value: 10, label: '10' }]}
+            marks={Array.from({ length: 11 }, (_, i) => ({ value: i, label: String(i) }))}
             onChange={(_, v) => setPain(v)}
             sx={{
               color: getPainColor(pain),
@@ -67,8 +67,8 @@ const Schmerzskala = ({ onCancel, onSubmit }) => {
             }}
           />
           <Stack direction="row" justifyContent="space-between">
-            <Typography variant="caption" color="success.main">leicht</Typography>
-            <Typography variant="caption" color="error.main">sehr stark</Typography>
+            <Typography variant="caption" color="text.secondary">kein Schmerz</Typography>
+            <Typography variant="caption" color="text.secondary">stärkster vorstellbarer Schmerz</Typography>
           </Stack>
         </Box>
         <Stack spacing={1}>
