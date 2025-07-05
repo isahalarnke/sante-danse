@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 const QrScanner = ({ onScanSuccess }) => {
   useEffect(() => {
     const scanner = new Html5Qrcode('qr-reader')
+    let isScanning = true // 🛡 Flag zum Schutz
 
     scanner
       .start(
@@ -12,8 +13,17 @@ const QrScanner = ({ onScanSuccess }) => {
         { fps: 10, qrbox: 250 },
         (decodedText) => {
           console.log('QR-Code erkannt:', decodedText)
-          onScanSuccess(decodedText)
-          scanner.stop()
+
+          if (isScanning) {
+            isScanning = false
+            onScanSuccess(decodedText)
+
+            scanner.stop().then(() => {
+              scanner.clear()
+            }).catch(err => {
+              console.warn('Stop-Fehler:', err)
+            })
+          }
         },
         (error) => {
           console.warn('Scan-Fehler:', error)
@@ -24,12 +34,16 @@ const QrScanner = ({ onScanSuccess }) => {
       })
 
     return () => {
-      scanner.stop().then(() => scanner.clear())
+      if (isScanning) {
+        scanner.stop().then(() => scanner.clear()).catch(() => {})
+        isScanning = false
+      }
     }
   }, [onScanSuccess])
 
   return <div id="qr-reader" style={{ width: '300px' }} />
 }
+
 QrScanner.propTypes = {
   onScanSuccess: PropTypes.func.isRequired
 }

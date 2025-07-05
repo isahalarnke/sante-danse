@@ -6,7 +6,7 @@ import { Stack } from '@mui/material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import BackButton from '../../Components/Buttons/BackButton'
 
-const ProfileOverview = () => {
+const AuswertungStart = () => {
   const navigate = useNavigate()
 
   return (
@@ -33,4 +33,4 @@ const ProfileOverview = () => {
   )
 }
 
-export default ProfileOverview
+export default AuswertungStart
