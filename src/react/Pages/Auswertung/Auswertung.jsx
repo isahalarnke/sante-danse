@@ -8,9 +8,10 @@ const Auswertung = () => (
   <Stack
     sx={{
       width: '100%',
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+      height: '100%',
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
       padding: 2
     }}
   >
@@ -20,9 +21,10 @@ const Auswertung = () => (
       Auswertung Schmerztagebuch
     </Typography>
     <Stack
-      width="100%"
       sx={{
-        flexGrow: 1
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       <Outlet />
