@@ -4,29 +4,32 @@ import { Outlet } from 'react-router-dom'
 
 import { Stack, Typography } from '@mui/material'
 
-const Profile = () => (
+const Auswertung = () => (
   <Stack
     sx={{
       width: '100%',
       height: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
       padding: 2
     }}
   >
     <Typography
       variant="h4"
     >
-      Your Profile
+      Auswertung Schmerztagebuch
     </Typography>
     <Stack
-      width="100%"
-      height="100%"
+      sx={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column'
+      }}
     >
-      {/* Sub-Routes of /profile like /profile/settings will mount here */}
       <Outlet />
     </Stack>
   </Stack>
 )
 
-export default Profile
+export default Auswertung
