@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Html5Qrcode } from 'html5-qrcode'
 import PropTypes from 'prop-types'
 
+const expectedQRCode = 'ERFOLGREICH VERIFIZIERT'
+
 const QrScanner = ({ onScanSuccess }) => {
+  const [showInvalidPopup, setShowInvalidPopup] = useState(false)
   useEffect(() => {
     const scanner = new Html5Qrcode('qr-reader')
     let isScanning = true // 🛡 Flag zum Schutz
@@ -14,7 +17,7 @@ const QrScanner = ({ onScanSuccess }) => {
         (decodedText) => {
           console.log('QR-Code erkannt:', decodedText)
 
-          if (isScanning) {
+          if (isScanning && decodedText === expectedQRCode) {
             isScanning = false
             onScanSuccess(decodedText)
 
@@ -23,6 +26,8 @@ const QrScanner = ({ onScanSuccess }) => {
             }).catch(err => {
               console.warn('Stop-Fehler:', err)
             })
+          } else if (isScanning) {
+            setShowInvalidPopup(true)
           }
         },
         (error) => {
@@ -41,7 +46,30 @@ const QrScanner = ({ onScanSuccess }) => {
     }
   }, [onScanSuccess])
 
-  return <div id="qr-reader" style={{ width: '300px' }} />
+  return (
+    <div style={{ position: 'relative' }}>
+      <div id="qr-reader" style={{ width: '300px' }} />
+
+      {showInvalidPopup && (
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          padding: '20px',
+          backgroundColor: '#fff',
+          border: '2px solid red',
+          borderRadius: '10px',
+          zIndex: 10,
+          textAlign: 'center'
+        }}
+        >
+          <p>Ungültiger QR-Code erkannt!</p>
+          <button type="button" onClick={() => setShowInvalidPopup(false)}>Schließen</button>
+        </div>
+      )}
+    </div>
+  )
 }
 
 QrScanner.propTypes = {
