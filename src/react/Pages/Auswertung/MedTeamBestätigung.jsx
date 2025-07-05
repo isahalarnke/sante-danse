@@ -9,16 +9,15 @@ import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import BackButton from '../../Components/Buttons/BackButton'
 import QrScanner from '../../Components/QrScanner'
 
-const ProfileSettings = () => {
+const QRScan = () => {
   const navigate = useNavigate()
 
   return (
-    // This is a React Fragment. It is a virtual React Component that will not render a HTML-DOM-Element
-    // We need to use it here, because we want to render two Components (Typography, Button) with no parent around them.
     <>
       <QrScanner
-        onScanSuccess={(data) => {
-          console.log('Gescannt:', data)
+        onScanSuccess={() => {
+          console.log('SCAN ERFOLGREICH – gehe zu qrerfolg')
+          navigate('/auswertung/qrerfolg')
         }}
       />
       <Box>
@@ -40,4 +39,4 @@ const ProfileSettings = () => {
   )
 }
 
-export default ProfileSettings
+export default QRScan
