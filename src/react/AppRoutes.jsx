@@ -7,6 +7,7 @@ import Stundenplan from './Pages/Stundenplan/Stundenplan'
 import AuswertungStart from './Pages/Auswertung/AuswertungStart'
 import MedTeamBestätigung from './Pages/Auswertung/MedTeamBestätigung'
 import QRErfolg from './Pages/Auswertung/QRErfolg'
+import Schmerzskala from './Pages/Schmerzskala/Schmerzskala'
 
 import Error404 from './Pages/Error404'
 
@@ -14,6 +15,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Welcome />} />
     <Route path="/home" element={<Home />} />
+    <Route path="/schmerzskala" element={<Schmerzskala />} />
     <Route path="/stundenplan" element={<Stundenplan />} />
     <Route path="/auswertung" element={<AuswertungStart />} />
     <Route path="/auswertung/medteam" element={<MedTeamBestätigung />} />

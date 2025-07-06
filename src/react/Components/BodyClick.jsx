@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { Container } from '@mui/system'
 import AlertDialog from './AlertDialog'
@@ -12,6 +13,7 @@ const BodyClick = () => {
   const [back, setBack] = useState(false)
 
   const [clickedBodyPart, setClickedBodyPart] = useState()
+  const navigate = useNavigate()
 
   const handleClick = (bodyPart) => {
     setClickedBodyPart(bodyPart)
@@ -22,6 +24,7 @@ const BodyClick = () => {
   }
   const handleDialogAccept = () => {
     setClickedBodyPart()
+    navigate('/schmerzskala')
     console.log('Navigiere auf Schmerzskala Seite')
     // Hier auf Schmerzskala View navigieren
   }

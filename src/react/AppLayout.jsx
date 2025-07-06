@@ -27,6 +27,7 @@ const AppLayout = () => {
 
   let navigationIndex = 0
   if (location.pathname.startsWith('/home')) navigationIndex = 1
+  if (location.pathname.startsWith('/schmerzskala')) navigationIndex = 1
   if (location.pathname.startsWith('/auswertung')) navigationIndex = 2
 
   return (
