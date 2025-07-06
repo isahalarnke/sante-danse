@@ -6,6 +6,8 @@ import { Stack, Typography } from '@mui/material'
 import { ArrowBack as BackIcon } from '@mui/icons-material'
 import BackButton from '../../Components/Buttons/BackButton'
 
+import UploadStundenplan from '../../Components/UploadStundenplan'
+
 const Stundenplan = () => {
   const navigate = useNavigate()
 
@@ -20,6 +22,7 @@ const Stundenplan = () => {
       >
         Test Stundenplan Button
       </Typography>
+      <UploadStundenplan />
       <BackButton
         variant="contained"
         startIcon={<BackIcon />}
