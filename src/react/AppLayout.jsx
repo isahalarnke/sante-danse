@@ -1,25 +1,23 @@
 import React from 'react'
-
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import {
-  Stack,
-  Typography,
+  BottomNavigation,
+  BottomNavigationAction,
   Container,
   Paper,
-  BottomNavigation,
-  BottomNavigationAction
+  Stack,
+  Typography
 } from '@mui/material'
 
 import {
-  HealthAndSafety as HomeIcon,
-  Pets as CatIcon,
-  Person4 as ProfileIcon
+  CalendarMonth as KalenderIcon,
+  AccessibilityNew as HomeIcon,
+  Leaderboard as AuswertungIcon
 } from '@mui/icons-material'
 
+import AppLogo from '../assets/favicon.png'
 import AppRoutes from './AppRoutes'
-
-import AppLogo from '../assets/favicon.svg'
 
 const borderRadius = 6
 
@@ -28,8 +26,8 @@ const AppLayout = () => {
   const navigate = useNavigate()
 
   let navigationIndex = 0
-  if (location.pathname.startsWith('/catnames')) navigationIndex = 1
-  if (location.pathname.startsWith('/profile')) navigationIndex = 2
+  if (location.pathname.startsWith('/home')) navigationIndex = 1
+  if (location.pathname.startsWith('/auswertung')) navigationIndex = 2
 
   return (
     <Stack
@@ -66,7 +64,7 @@ const AppLayout = () => {
             }}
           />
           <Typography variant="h5">
-            My Mobile Health App
+            SantéDanse
           </Typography>
         </Stack>
         <Paper
@@ -79,7 +77,6 @@ const AppLayout = () => {
             paddingRight: 1,
             paddingBottom: 2,
             paddingLeft: 1,
-            overflow: 'hidden',
             borderRadius: theme => theme.spacing(borderRadius),
             background: theme => theme.palette.grey[900]
           }}
@@ -102,19 +99,19 @@ const AppLayout = () => {
               sx={{ width: '100%' }}
             >
               <BottomNavigationAction
+                label="Stundenplan"
+                icon={<KalenderIcon />}
+                onClick={() => navigate('/stundenplan')}
+              />
+              <BottomNavigationAction
                 label="Home"
                 icon={<HomeIcon />}
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/home')}
               />
               <BottomNavigationAction
-                label="Cat Names"
-                icon={<CatIcon />}
-                onClick={() => navigate('/catnames')}
-              />
-              <BottomNavigationAction
-                label="Profile"
-                icon={<ProfileIcon />}
-                onClick={() => navigate('/profile')}
+                label="Auswertung"
+                icon={<AuswertungIcon />}
+                onClick={() => navigate('/auswertung')}
               />
             </BottomNavigation>
           </Stack>

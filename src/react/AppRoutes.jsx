@@ -1,25 +1,23 @@
 import React from 'react'
-
 import { Route, Routes } from 'react-router-dom'
 
-import Home from './Pages/Home'
-import CatNames from './Pages/CatNames/CatNames'
-import Profile from './Pages/Profile/Profile'
-import ProfileOverview from './Pages/Profile/ProfileOverview'
-import ProfileSettings from './Pages/Profile/ProfileSettings'
-import Schmerzskala from './Pages/Schmerzskala/Schmerzskala'
+import Welcome from './Pages/Welcome/Welcome'
+import Home from './Pages/Home/Home'
+import Stundenplan from './Pages/Stundenplan/Stundenplan'
+import AuswertungStart from './Pages/Auswertung/AuswertungStart'
+import MedTeamBestätigung from './Pages/Auswertung/MedTeamBestätigung'
+import QRErfolg from './Pages/Auswertung/QRErfolg'
 
 import Error404 from './Pages/Error404'
 
 const AppRoutes = () => (
   <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/profile" element={<Profile />}>
-      <Route path="" element={<ProfileOverview />} />
-      <Route path="settings" element={<ProfileSettings />} />
-    </Route>
-    <Route path="/catnames" element={<CatNames />} />
-    <Route path="/schmerzskala" element={<Schmerzskala />} />
+    <Route path="/" element={<Welcome />} />
+    <Route path="/home" element={<Home />} />
+    <Route path="/stundenplan" element={<Stundenplan />} />
+    <Route path="/auswertung" element={<AuswertungStart />} />
+    <Route path="/auswertung/medteam" element={<MedTeamBestätigung />} />
+    <Route path="/auswertung/qrerfolg" element={<QRErfolg />} />
     <Route path="*" element={<Error404 />} />
   </Routes>
 )
