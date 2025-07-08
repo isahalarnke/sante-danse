@@ -52,7 +52,9 @@ const Schmerzskala = ({ onCancel, onSubmit }) => {
         </Typography>
         <Box sx={{ mb: 3 }}>
           <Typography align="center" sx={{ mb: 1 }}>
-            Schmerzintensität
+            Schmerzintensität von
+            {' '}
+            <strong>{localStorage.getItem('clickedBodyPart')}</strong>
           </Typography>
           <Slider
             value={pain}
