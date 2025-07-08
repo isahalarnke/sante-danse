@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Stack, Typography } from '@mui/material'
+import { Stack } from '@mui/material'
 import { ArrowBack as BackIcon } from '@mui/icons-material'
 import BackButton from '../../Components/Buttons/BackButton'
 
@@ -17,11 +17,6 @@ const Stundenplan = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Typography
-        variant="h4"
-      >
-        Test Stundenplan Button
-      </Typography>
       <UploadStundenplan />
       <BackButton
         variant="contained"
