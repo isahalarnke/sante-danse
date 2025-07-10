@@ -8,7 +8,7 @@ const Home = () => (
     flex="1 1 auto"
     justifyContent="center"
     alignItems="center"
-    pacing={4}
+    spacing={4}
     sx={{ padding: 2 }}
   >
     <Typography variant="h4">
