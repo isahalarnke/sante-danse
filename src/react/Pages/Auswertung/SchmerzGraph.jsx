@@ -1,7 +1,47 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Stack, Typography, Box, Card, CardContent } from '@mui/material'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts'
+import PropTypes from 'prop-types'
 import { getPainEntries } from '../../../hooks/usePainEntries'
+
+// Benutzerdefinierter Tooltip für das Liniendiagramm
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    // Wir nehmen das erste Payload-Element, um das bodyPart zu bestimmen
+    const item = payload[0]
+    const painEntries = window.painEntries || []
+    // Finde das passende painEntry für dieses Datum und bodyPart
+    const entry = painEntries.find(e => e.bodyPart === item.dataKey &&
+      new Date(e.date).toISOString().slice(0, 10) === label)
+    // Bewegungen als String
+    const movements = entry && entry.movements ? entry.movements.join(', ') : '-'
+    return (
+      <Box sx={{ background: '#fff', border: '1px solid #ccc', p: 1 }}>
+        <Typography variant="body2">
+          <b>Datum:</b>
+          {' '}
+          {label}
+        </Typography>
+        <Typography variant="body2">
+          <b>Bewegung:</b>
+          {' '}
+          {movements}
+        </Typography>
+      </Box>
+    )
+  }
+  return null
+}
+
+// PropTypes für CustomTooltip
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.arrayOf(PropTypes.shape({
+    dataKey: PropTypes.string,
+    value: PropTypes.number
+  })),
+  label: PropTypes.string
+}
 
 const SchmerzGraph = () => {
   const [painEntries, setPainEntries] = useState([])
@@ -11,6 +51,8 @@ const SchmerzGraph = () => {
   useEffect(() => {
     const loadData = () => {
       setPainEntries(getPainEntries())
+      // Speichere painEntries im window für Tooltip-Zugriff
+      window.painEntries = getPainEntries()
     }
     loadData()
     const handleStorageChange = () => {
@@ -95,7 +137,7 @@ const SchmerzGraph = () => {
                   ))}
                   <XAxis dataKey="date" />
                   <YAxis />
-                  <Tooltip />
+                  <Tooltip content={<CustomTooltip />} />
                   <Legend onClick={handleLegendClick} />
                 </LineChart>
               </ResponsiveContainer>
