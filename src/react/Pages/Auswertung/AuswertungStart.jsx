@@ -82,6 +82,15 @@ const AuswertungStart = () => {
         onClose={() => setOpenQRDialog(false)}
         fullWidth
         maxWidth="xs"
+        PaperProps={{
+          sx: {
+            width: '90vw',
+            maxWidth: 320,
+            maxHeight: '90vh',
+            m: 'auto',
+            borderRadius: 3
+          }
+        }}
       >
         <DialogTitle>
           QR-Code scannen
@@ -94,12 +103,20 @@ const AuswertungStart = () => {
           </IconButton>
         </DialogTitle>
 
-        <Box sx={{ px: 3, pb: 3 }}>
+        <Box
+          sx={{
+            px: 3,
+            pb: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
           <Typography
             variant="body2"
             sx={{ mb: 2, textAlign: 'center', color: 'text.secondary' }}
           >
-            Bitte halte den QR-Code vor die Kamera
+            Bitte halte den QR-Code vor die Kamera, um dein Schmerztagebuch durch das Personal verifizieren zu lassen.
           </Typography>
 
           <Box
