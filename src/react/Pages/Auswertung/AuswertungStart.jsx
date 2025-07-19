@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { Stack, Button, Typography, Box, Snackbar } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
-import BackButton from '../../Components/Buttons/BackButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
+import SchmerzGraph from './SchmerzGraph'
 
 const AuswertungStart = () => {
   const navigate = useNavigate()
@@ -41,15 +41,14 @@ const AuswertungStart = () => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        gap: 3
+        gap: 3,
+        px: 2,
+        py: 4
       }}
     >
-      <BackButton
-        variant="contained"
-        onClick={() => navigate('/home')}
-      >
-        Zurück
-      </BackButton>
+      <Box sx={{ width: '100%', maxWidth: 1000 }}>
+        <SchmerzGraph />
+      </Box>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
         <Typography variant="body2" color="text.secondary">
@@ -72,13 +71,6 @@ const AuswertungStart = () => {
         onClick={() => navigate('/auswertung/medteam')}
       >
         Med Team Bestätigen
-      </PrimaryButton>
-
-      <PrimaryButton
-        variant="outlined"
-        onClick={() => navigate('/auswertung/visualisierung')}
-      >
-        Schmerzdaten Visualisierung
       </PrimaryButton>
 
       <Snackbar
