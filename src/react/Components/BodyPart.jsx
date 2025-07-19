@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// Generische Komponente für die Körperteteile // TODO: in WholeBody anpassen
+// Generische Komponente für die Körperteteile
 const BodyPart = ({ onClick, style, children }) => (
   <div onClick={onClick} style={style}>
     {children}
