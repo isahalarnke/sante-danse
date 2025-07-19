@@ -7,7 +7,6 @@ import WholeBody from './WholeBody'
 import SwitchFrontBack from './SwitchFrontBack'
 
 // Zustand der Körperteile werden hier vom Parent bestimmt
-// Selected Body Part evtl. als Kontext speichern?
 
 const BodyClick = () => {
   const [back, setBack] = useState(false)
@@ -26,7 +25,6 @@ const BodyClick = () => {
     setClickedBodyPart()
     navigate('/schmerzskala')
     console.log('Navigiere auf Schmerzskala Seite')
-    // Hier auf Schmerzskala View navigieren
   }
 
   return (
