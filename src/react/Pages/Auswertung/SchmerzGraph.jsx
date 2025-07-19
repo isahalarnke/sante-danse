@@ -105,7 +105,16 @@ const SchmerzGraph = () => {
   }
 
   return (
-    <Stack spacing={3} sx={{ p: 3 }}>
+    <Stack
+      spacing={3}
+      sx={{
+        p: 3,
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        overflowY: 'auto'
+      }}
+    >
       <Typography variant="h5" gutterBottom>
         Schmerzverlauf nach Körperteil
       </Typography>
