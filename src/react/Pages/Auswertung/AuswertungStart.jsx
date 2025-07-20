@@ -68,9 +68,4 @@ const AuswertungStart = () => {
   )
 }
 
-QrVerifyDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
-}
-
 export default AuswertungStart

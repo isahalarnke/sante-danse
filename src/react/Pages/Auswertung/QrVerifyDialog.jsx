@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
-import { Dialog, DialogTitle, Box, IconButton, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import {
+  Dialog,
+  DialogTitle,
+  Box,
+  IconButton,
+  Typography
+} from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
+import CancelIcon from '@mui/icons-material/Cancel'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import QrScanner from '../../Components/QrScanner'
 
 const QrVerifyDialog = ({ open, onClose }) => {
   const [status, setStatus] = useState('idle')
+
+  useEffect(() => {
+    if (open) {
+      setStatus('idle')
+    }
+  }, [open])
 
   const handleScanSuccess = () => {
     setStatus('success')
@@ -13,11 +26,6 @@ const QrVerifyDialog = ({ open, onClose }) => {
 
   const handleScanError = () => {
     setStatus('error')
-  }
-
-  const handleClose = () => {
-    setStatus('idle')
-    onClose()
   }
 
   const getDialogTitle = () => {
@@ -45,7 +53,7 @@ const QrVerifyDialog = ({ open, onClose }) => {
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       fullWidth
       maxWidth="xs"
       PaperProps={{
@@ -61,7 +69,7 @@ const QrVerifyDialog = ({ open, onClose }) => {
         {getDialogTitle()}
         <IconButton
           aria-label="close"
-          onClick={handleClose}
+          onClick={onClose}
           sx={{ position: 'absolute', right: 8, top: 8 }}
         >
           <CloseIcon />
@@ -76,7 +84,8 @@ const QrVerifyDialog = ({ open, onClose }) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          textAlign: 'center'
+          textAlign: 'center',
+          gap: 2
         }}
       >
         {status === 'success' && (
@@ -88,29 +97,45 @@ const QrVerifyDialog = ({ open, onClose }) => {
           </>
         )}
 
-        {(status === 'idle' || status === 'error') && (
+        {status === 'error' && (
           <>
-            <CheckCircleIcon sx={{ fontSize: 60, color: 'red' }} />
+            <CancelIcon sx={{ fontSize: 60, color: 'red' }} />
             <Typography variant="body2" color="text.secondary">
               QR Code konnte nicht verifiziert werden.
             </Typography>
-            <Box
-              sx={{
-                width: 250,
-                height: 225,
-                borderRadius: 2,
-                overflow: 'hidden',
-                bgcolor: '#000',
-                border: '1px solid rgba(255,255,255,0.4)'
-              }}
-            >
-              <QrScanner
-                onScanSuccess={handleScanSuccess}
-                onError={handleScanError}
-              />
-            </Box>
           </>
         )}
+
+        {status === 'idle' && (
+          <Typography variant="body2" color="text.secondary">
+            Bitte halte den QR‑Code vor die Kamera.
+          </Typography>
+        )}
+
+        <Box
+          sx={{
+            width: 250,
+            height: 225,
+            borderRadius: 2,
+            overflow: 'hidden',
+            bgcolor: status === 'idle' ? '#000' : 'transparent',
+            border: status === 'idle'
+              ? '1px solid rgba(255,255,255,0.4)'
+              : 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          {status === 'idle' ? (
+            <QrScanner
+              onScanSuccess={handleScanSuccess}
+              onError={handleScanError}
+            />
+          ) : (
+            <Box sx={{ width: '100%', height: '100%' }} />
+          )}
+        </Box>
       </Box>
     </Dialog>
   )
