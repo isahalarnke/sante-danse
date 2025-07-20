@@ -93,10 +93,6 @@ const SchmerzGraph = () => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Typography variant="h5" gutterBottom>
-        Schmerzverlauf nach Körperteil
-      </Typography>
-
       {!hasData ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
           <Typography variant="body2" color="text.secondary">
@@ -121,9 +117,9 @@ const SchmerzGraph = () => {
               )
             ))}
             <XAxis dataKey="date" />
-            <YAxis />
+            <YAxis width={20} tickMargin={2} />
             <Tooltip content={<CustomTooltip />} />
-            <Legend onClick={handleLegendClick} />
+            <Legend onClick={handleLegendClick} verticalAlign="bottom" height={36} />
           </LineChart>
         </ResponsiveContainer>
       )}

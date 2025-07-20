@@ -37,7 +37,7 @@ const AuswertungStart = () => {
 
   return (
     <Box sx={{ flex: '1 1 auto', width: '100%' }}>
-      <Grid container spacing={2} justifyContent="center" sx={{ px: 2, py: 2 }}>
+      <Grid container spacing={2} justifyContent="center" sx={{ px: 2, py: 2, mt: 4 }}>
         <Grid item xs={12}>
           <SchmerzGraph />
         </Grid>
@@ -67,7 +67,7 @@ const AuswertungStart = () => {
 
         <Grid item xs={12} display="flex" justifyContent="center">
           <PrimaryButton variant="contained" onClick={openScannerDialog}>
-            Med Team Bestätigen
+            Bestätigung durch das Medizinische Team starten
           </PrimaryButton>
         </Grid>
       </Grid>
