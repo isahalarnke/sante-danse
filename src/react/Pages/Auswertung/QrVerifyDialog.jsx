@@ -20,12 +20,9 @@ const QrVerifyDialog = ({ open, onClose }) => {
     }
   }, [open])
 
-  const handleScanSuccess = () => {
-    setStatus('success')
-  }
-
-  const handleScanError = () => {
-    setStatus('error')
+  const handleClose = () => {
+    setStatus('idle')
+    onClose()
   }
 
   const getDialogTitle = () => {
@@ -53,7 +50,7 @@ const QrVerifyDialog = ({ open, onClose }) => {
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       fullWidth
       maxWidth="xs"
       PaperProps={{
@@ -69,7 +66,7 @@ const QrVerifyDialog = ({ open, onClose }) => {
         {getDialogTitle()}
         <IconButton
           aria-label="close"
-          onClick={onClose}
+          onClick={handleClose}
           sx={{ position: 'absolute', right: 8, top: 8 }}
         >
           <CloseIcon />
@@ -115,7 +112,7 @@ const QrVerifyDialog = ({ open, onClose }) => {
         <Box
           sx={{
             width: 250,
-            height: 225,
+            height: 250,
             borderRadius: 2,
             overflow: 'hidden',
             bgcolor: status === 'idle' ? '#000' : 'transparent',
@@ -129,8 +126,8 @@ const QrVerifyDialog = ({ open, onClose }) => {
         >
           {status === 'idle' ? (
             <QrScanner
-              onScanSuccess={handleScanSuccess}
-              onError={handleScanError}
+              onScanSuccess={() => setStatus('success')}
+              onError={() => setStatus('error')}
             />
           ) : (
             <Box sx={{ width: '100%', height: '100%' }} />

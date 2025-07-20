@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import { Stack, Button, Typography, Box, Snackbar } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
@@ -14,6 +13,7 @@ const AuswertungStart = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
   const [openQRDialog, setOpenQRDialog] = useState(false)
+  const [qrDialogKey, setQrDialogKey] = useState(0)
 
   useEffect(() => {
     setPainEntries(getPainEntries())
@@ -21,6 +21,15 @@ const AuswertungStart = () => {
 
   const handleCloseSnackbar = () => {
     setShowSnackbar(false)
+  }
+
+  const openScannerDialog = () => {
+    setQrDialogKey(prev => prev + 1)
+    setOpenQRDialog(true)
+  }
+
+  const closeScannerDialog = () => {
+    setOpenQRDialog(false)
   }
 
   return (
@@ -52,11 +61,15 @@ const AuswertungStart = () => {
         </Button>
       </Box>
 
-      <PrimaryButton variant="contained" onClick={() => setOpenQRDialog(true)}>
+      <PrimaryButton variant="contained" onClick={openScannerDialog}>
         Med Team Bestätigen
       </PrimaryButton>
 
-      <QrVerifyDialog open={openQRDialog} onClose={() => setOpenQRDialog(false)} />
+      <QrVerifyDialog
+        key={qrDialogKey} // 💡 erzwingt komplettes remounten & Status reset
+        open={openQRDialog}
+        onClose={closeScannerDialog}
+      />
 
       <Snackbar
         open={showSnackbar}
