@@ -372,7 +372,8 @@ const WholeBody = ({ clickedBodyPart, setClickedBodyPart, onClick, isBack }) => 
         >
           <path
             // eslint-disable-next-line max-len
-            d="M23 1H17.5H14H11L8.75 1.75L7.5 2.5L6.5 3.5L5.75 4.75L5 6L3 10L1.5 13.25L0.5 17.5V22V26.5V31V39.5V43.25V47L1 50L2 53L3.5 57L5 59.5L8 62L13.5 63.5H17.5H23H29L32 61L33 57V50.5V45.5V39.5V31V24.5V17.5V14.25V11L32.5 8.5L31 6L30 4.5L29 3L27.5 2L26 1H23Z"             stroke="black"
+            d="M23 1H17.5H14H11L8.75 1.75L7.5 2.5L6.5 3.5L5.75 4.75L5 6L3 10L1.5 13.25L0.5 17.5V22V26.5V31V39.5V43.25V47L1 50L2 53L3.5 57L5 59.5L8 62L13.5 63.5H17.5H23H29L32 61L33 57V50.5V45.5V39.5V31V24.5V17.5V14.25V11L32.5 8.5L31 6L30 4.5L29 3L27.5 2L26 1H23Z"
+            stroke="black"
           />
         </svg>
       </BodyPart>

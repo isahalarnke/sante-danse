@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { ArrowBack as BackIcon } from '@mui/icons-material'
-import { Stack } from '@mui/material'
+import { Stack, Box, Typography } from '@mui/material'
 
 import BackButton from '../../Components/Buttons/BackButton'
 import QrScanner from '../../Components/QrScanner'
@@ -22,12 +22,31 @@ const QRScan = () => {
         width: '100%'
       }}
     >
-      <QrScanner
-        onScanSuccess={() => {
-          console.log('SCAN ERFOLGREICH – gehe zu qrerfolg')
-          navigate('/auswertung/qrerfolg')
+      <Typography
+        variant="subtitle1"
+        sx={{ mb: 2, px: 3, textAlign: 'center', color: 'text.secondary' }}
+      >
+        Bitte halte den QR-Code vor die Kamera, um deine Verifizierung abzuschließen.
+      </Typography>
+      <Box
+        sx={{
+          position: 'relative',
+          width: 250,
+          height: 225,
+          border: '1px solid rgba(255, 255, 255, 0.4)',
+          borderRadius: 2,
+          overflow: 'hidden',
+          bgcolor: '#000',
+          mb: 4
         }}
-      />
+      >
+        <QrScanner
+          onScanSuccess={() => {
+            console.log('SCAN ERFOLGREICH – gehe zu qrerfolg')
+            navigate('/auswertung/qrerfolg')
+          }}
+        />
+      </Box>
       <BackButton
         variant="contained"
         startIcon={<BackIcon />}
