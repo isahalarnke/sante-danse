@@ -68,11 +68,12 @@ const Welcome = () => {
       flex="1 1 auto"
       justifyContent="center"
       alignItems="center"
+      spacing={3}
     >
       <Typography
         variant="h4"
       >
-        Welcome
+        Willkommen
       </Typography>
 
       {error && <Alert severity="error">{error}</Alert>}
