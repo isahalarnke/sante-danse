@@ -1,74 +1,91 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Stack, Button, Typography, Box, Snackbar } from '@mui/material'
+import { Grid, Button, Snackbar, Box } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
 import QrVerifyDialog from './QrVerifyDialog'
+import TagesCountdown from './TageCountdown'
 import SchmerzGraph from './SchmerzGraph'
+import HinweisBox from './HinweisBox'
 
 const AuswertungStart = () => {
-  const navigate = useNavigate()
   const [painEntries, setPainEntries] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
   const [openQRDialog, setOpenQRDialog] = useState(false)
   const [qrDialogKey, setQrDialogKey] = useState(0)
+  const [startDate, setStartDate] = useState(() => {
+    const saved = localStorage.getItem('countdownStart')
+    return saved
+      ? new Date(saved)
+      : new Date(Date.now() - 28 * 24 * 60 * 60 * 1000)
+  })
+  const daysLeft = Math.max(
+    0,
+    30 - Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24))
+  )
 
   useEffect(() => {
     setPainEntries(getPainEntries())
   }, [])
 
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false)
-  }
-
+  const handleCloseSnackbar = () => setShowSnackbar(false)
   const openScannerDialog = () => {
     setQrDialogKey(prev => prev + 1)
     setOpenQRDialog(true)
   }
-
-  const closeScannerDialog = () => {
-    setOpenQRDialog(false)
-  }
+  const closeScannerDialog = () => setOpenQRDialog(false)
 
   return (
-    <Stack sx={{ flex: 1, alignItems: 'center', gap: 3, px: 2, py: 4 }}>
-      <Box sx={{ width: '100%', maxWidth: 1000 }}>
-        <SchmerzGraph />
-      </Box>
+    <Box sx={{ flex: '1 1 auto', width: '100%' }}>
+      <Grid container spacing={2} justifyContent="center" sx={{ px: 2, py: 2, mt: 4 }}>
+        <Grid item xs={12}>
+          <SchmerzGraph />
+        </Grid>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-        <Typography variant="body2" color="text.secondary">
-          Schmerzeinträge:
-            {painEntries.length}
-        </Typography>
-        <Button
-          variant="outlined"
-          startIcon={<AddIcon />}
-          onClick={() => {
-            setIsLoading(true)
-            setTimeout(() => {
-              loadDummyData()
-              setPainEntries(getPainEntries())
-              setIsLoading(false)
-              setShowSnackbar(true)
-            }, 500)
-          }}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Laden...' : 'Testdaten laden'}
-        </Button>
-      </Box>
+        <Grid item xs={11}>
+          <TagesCountdown daysLeft={daysLeft} />
+        </Grid>
 
-      <PrimaryButton variant="contained" onClick={openScannerDialog}>
-        Med Team Bestätigen
-      </PrimaryButton>
+        <Grid item xs={11}>
+          <HinweisBox daysLeft={daysLeft} />
+        </Grid>
+
+        <Grid item xs={11} display="flex" justifyContent="center">
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            onClick={() => {
+              setIsLoading(true)
+              setTimeout(() => {
+                loadDummyData()
+                setPainEntries(getPainEntries())
+                setIsLoading(false)
+                setShowSnackbar(true)
+              }, 500)
+            }}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Laden...' : 'Testdaten laden'}
+          </Button>
+        </Grid>
+
+        <Grid item xs={12} display="flex" justifyContent="center">
+          <PrimaryButton variant="contained" onClick={openScannerDialog}>
+            Bestätigung durch das Medizinische Team starten
+          </PrimaryButton>
+        </Grid>
+      </Grid>
 
       <QrVerifyDialog
-        key={qrDialogKey} // 💡 erzwingt komplettes remounten & Status reset
+        key={qrDialogKey}
         open={openQRDialog}
         onClose={closeScannerDialog}
+        onVerified={() => {
+          const now = new Date()
+          localStorage.setItem('countdownStart', now.toISOString())
+          setStartDate(now)
+        }}
       />
 
       <Snackbar
@@ -77,7 +94,7 @@ const AuswertungStart = () => {
         onClose={handleCloseSnackbar}
         message="Testdaten erfolgreich geladen!"
       />
-    </Stack>
+    </Box>
   )
 }
 
