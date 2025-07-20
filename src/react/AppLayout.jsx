@@ -19,7 +19,7 @@ import {
   Leaderboard as AuswertungIcon
 } from '@mui/icons-material'
 
-import AppLogo from '../assets/AppLogo.png'
+import AppLogo from './Components/AppLogo'
 import AppRoutes from './AppRoutes'
 
 const borderRadius = 6
@@ -104,12 +104,8 @@ const AppLayout = () => {
                     {localStorage.getItem('displayName')}
                   </Typography>
 
-                  <Box
-                    component="img"
-                    src={AppLogo}
-                    alt="App Logo"
-                    sx={{ height: 60, width: 60 }}
-                  />
+                  <AppLogo width={80} height={80} />
+
                 </Toolbar>
               </AppBar>
             )}
