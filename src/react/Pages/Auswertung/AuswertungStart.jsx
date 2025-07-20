@@ -18,7 +18,7 @@ const AuswertungStart = () => {
     const saved = localStorage.getItem('countdownStart')
     return saved
       ? new Date(saved)
-      : new Date(Date.now() - 28 * 24 * 60 * 60 * 1000)
+      : new Date(Date.now() - 20 * 24 * 60 * 60 * 1000)
   })
   const daysLeft = Math.max(
     0,
