@@ -8,7 +8,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 import {
   Table, TableBody, TableCell, TableContainer,
-  TableHead, TableRow, Paper, Button, Typography
+  TableHead, TableRow, Paper, Button
 } from '@mui/material'
 
 import { Container } from '@mui/system'
@@ -82,49 +82,43 @@ const UploadStundenplan = () => {
       </Button>
       { /* Nur bei vorhandenem Stundenplan gerendert */ }
       {stundenplan.length > 0 && (
-        <>
-          <Typography variant="h8" gutterBottom>
-            Stundenplan Übersicht
-          </Typography>
-          <Container>
-            <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
-              <Grid sx={{ width: 'fit-content' }}>
-                <TableContainer
-                  component={Paper}
-                  sx={{
-                    maxWidth: 600,
-                    marginTop: 2,
-                    maxHeight: 450
-                  }}
-                >
-                  <Table size="small" sx={{ fontSize: '0.75rem' }}>
-                    <TableHead>
-                      <TableRow>
-                        {columns.map((col) => (
-                          <TableCell key={col} sx={{ padding: '5px', fontSize: '0.75rem' }}>
-                            <strong>{col}</strong>
-                          </TableCell>
-                        ))}
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {stundenplan.map((row) => (
-                        <TableRow key={JSON.stringify(row)}>
-                          {columns.map((col) => (
-                            <TableCell key={col} sx={{ padding: '5px', fontSize: '0.75rem' }}>
-                              {row[col]}
-                            </TableCell>
-                          ))}
-                        </TableRow>
+      <Container>
+        <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
+          <Grid sx={{ width: 'fit-content' }}>
+            <TableContainer
+              component={Paper}
+              sx={{
+                maxWidth: 600,
+                marginTop: 2,
+                maxHeight: 450
+              }}
+            >
+              <Table size="small" sx={{ fontSize: '0.75rem' }}>
+                <TableHead>
+                  <TableRow>
+                    {columns.map((col) => (
+                      <TableCell key={col} sx={{ padding: '5px', fontSize: '0.75rem' }}>
+                        <strong>{col}</strong>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {stundenplan.map((row) => (
+                    <TableRow key={JSON.stringify(row)}>
+                      {columns.map((col) => (
+                        <TableCell key={col} sx={{ padding: '5px', fontSize: '0.75rem' }}>
+                          {row[col]}
+                        </TableCell>
                       ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Grid>
-            </Grid>
-          </Container>
-
-        </>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+        </Grid>
+      </Container>
       )}
     </>
   )
