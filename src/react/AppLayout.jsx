@@ -7,7 +7,9 @@ import {
   Container,
   Paper,
   Stack,
-  Typography
+  Typography,
+  AppBar,
+  Toolbar
 } from '@mui/material'
 
 import {
@@ -16,7 +18,7 @@ import {
   Leaderboard as AuswertungIcon
 } from '@mui/icons-material'
 
-import AppLogo from '../assets/favicon.png'
+import AppLogo from './Components/AppLogo'
 import AppRoutes from './AppRoutes'
 
 const borderRadius = 6
@@ -29,6 +31,10 @@ const AppLayout = () => {
   if (location.pathname.startsWith('/home')) navigationIndex = 1
   if (location.pathname.startsWith('/schmerzskala')) navigationIndex = 1
   if (location.pathname.startsWith('/auswertung')) navigationIndex = 2
+
+  const { pathname } = location
+
+  const isWelcomePage = pathname === '/'
 
   return (
     <Stack
@@ -50,24 +56,6 @@ const AppLayout = () => {
           height: '100%'
         }}
       >
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          marginBottom={2}
-        >
-          <img
-            src={AppLogo}
-            alt="App Logo"
-            style={{
-              width: '40px',
-              height: '40px'
-            }}
-          />
-          <Typography variant="h5">
-            SantéDanse
-          </Typography>
-        </Stack>
         <Paper
           elevation={6}
           sx={{
@@ -93,28 +81,59 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
+            {!isWelcomePage && (
+              <AppBar
+                position="static"
+                elevation={1}
+                sx={{
+                  backgroundColor: '#c7bbeaff',
+                  color: '#333'
+                }}
+              >
+                <Toolbar
+                  sx={{
+                    justifyContent: 'space-between',
+                    minHeight: 56,
+                    px: 2
+                  }}
+                >
+                  <Typography variant="h6">
+                    Hallo,
+                    {' '}
+                    {localStorage.getItem('displayName')}
+                  </Typography>
+
+                  <AppLogo width={80} height={80} />
+
+                </Toolbar>
+              </AppBar>
+            )}
+
             <AppRoutes />
-            <BottomNavigation
-              showLabels
-              value={navigationIndex}
-              sx={{ width: '100%' }}
-            >
-              <BottomNavigationAction
-                label="Stundenplan"
-                icon={<KalenderIcon />}
-                onClick={() => navigate('/stundenplan')}
-              />
-              <BottomNavigationAction
-                label="Home"
-                icon={<HomeIcon />}
-                onClick={() => navigate('/home')}
-              />
-              <BottomNavigationAction
-                label="Auswertung"
-                icon={<AuswertungIcon />}
-                onClick={() => navigate('/auswertung')}
-              />
-            </BottomNavigation>
+
+            {!isWelcomePage && (
+              <BottomNavigation
+                showLabels
+                value={navigationIndex}
+                sx={{ width: '100%' }}
+              >
+                <BottomNavigationAction
+                  label="Stundenplan"
+                  icon={<KalenderIcon />}
+                  onClick={() => navigate('/stundenplan')}
+                />
+                <BottomNavigationAction
+                  label="Home"
+                  icon={<HomeIcon />}
+                  onClick={() => navigate('/home')}
+                />
+                <BottomNavigationAction
+                  label="Auswertung"
+                  icon={<AuswertungIcon />}
+                  onClick={() => navigate('/auswertung')}
+                />
+              </BottomNavigation>
+            )}
           </Stack>
         </Paper>
       </Container>
