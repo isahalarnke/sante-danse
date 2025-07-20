@@ -6,6 +6,7 @@ import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
 import QrVerifyDialog from './QrVerifyDialog'
 import TagesCountdown from './TageCountdown'
 import SchmerzGraph from './SchmerzGraph'
+import HinweisBox from './HinweisBox'
 
 const AuswertungStart = () => {
   const [painEntries, setPainEntries] = useState([])
@@ -46,7 +47,11 @@ const AuswertungStart = () => {
           <TagesCountdown daysLeft={daysLeft} />
         </Grid>
 
-        <Grid item xs={12} display="flex" justifyContent="center">
+        <Grid item xs={11}>
+          <HinweisBox daysLeft={daysLeft} />
+        </Grid>
+
+        <Grid item xs={11} display="flex" justifyContent="center">
           <Button
             variant="outlined"
             startIcon={<AddIcon />}
