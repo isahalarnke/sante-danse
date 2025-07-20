@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Typography, LinearProgress } from '@mui/material'
+import PropTypes from 'prop-types'
 
 const getColor = (daysLeft) => {
   const percent = daysLeft / 30
@@ -25,6 +26,10 @@ const TagesCountdown = ({ daysLeft }) => {
       />
     </Box>
   )
+}
+
+TagesCountdown.propTypes = {
+  daysLeft: PropTypes.number.isRequired
 }
 
 export default TagesCountdown
