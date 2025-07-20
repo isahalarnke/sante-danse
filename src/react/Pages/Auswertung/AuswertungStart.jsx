@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Button, Snackbar, Box } from '@mui/material'
+import { Button, Snackbar, Box, Grid2 as Grid } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
@@ -39,19 +39,19 @@ const AuswertungStart = () => {
   return (
     <Box sx={{ flex: '1 1 auto', width: '100%' }}>
       <Grid container spacing={2} justifyContent="center" sx={{ px: 2, py: 2, mt: 4 }}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <SchmerzGraph />
         </Grid>
 
-        <Grid item xs={11}>
+        <Grid size={11}>
           <TagesCountdown daysLeft={daysLeft} />
         </Grid>
 
-        <Grid item xs={11}>
+        <Grid size={11}>
           <HinweisBox daysLeft={daysLeft} />
         </Grid>
 
-        <Grid item xs={11} display="flex" justifyContent="center">
+        <Grid size={11} display="flex" justifyContent="center">
           <Button
             variant="outlined"
             startIcon={<AddIcon />}
@@ -70,7 +70,7 @@ const AuswertungStart = () => {
           </Button>
         </Grid>
 
-        <Grid item xs={9} display="flex" justifyContent="center">
+        <Grid size={9} display="flex" justifyContent="center">
           <PrimaryButton variant="contained" onClick={openScannerDialog}>
             Bestätigung durch das Medizinische Team starten
           </PrimaryButton>
