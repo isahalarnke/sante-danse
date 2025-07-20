@@ -82,27 +82,39 @@ const QrVerifyDialog = ({ open, onClose }) => {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          gap: 2
+          gap: 2,
+          minHeight: 350,
+          boxSizing: 'border-box'
         }}
       >
-        {status === 'success' && (
-          <>
-            <CheckCircleIcon sx={{ fontSize: 60, color: 'green' }} />
-            <Typography variant="body1" sx={{ fontWeight: 600 }}>
-              Dein Eintrag wurde bestätigt!
-            </Typography>
-          </>
+        {(status === 'success' || status === 'error') && (
+          <Box
+            sx={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 2
+            }}
+          >
+            {status === 'success' ? (
+              <>
+                <CheckCircleIcon sx={{ fontSize: 60, color: 'green' }} />
+                <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                  Dein Eintrag wurde bestätigt!
+                </Typography>
+              </>
+            ) : (
+              <>
+                <CancelIcon sx={{ fontSize: 60, color: 'red' }} />
+                <Typography variant="body2" color="text.secondary">
+                  QR Code konnte nicht verifiziert werden.
+                </Typography>
+              </>
+            )}
+          </Box>
         )}
-
-        {status === 'error' && (
-          <>
-            <CancelIcon sx={{ fontSize: 60, color: 'red' }} />
-            <Typography variant="body2" color="text.secondary">
-              QR Code konnte nicht verifiziert werden.
-            </Typography>
-          </>
-        )}
-
         {status === 'idle' && (
           <Typography variant="body2" color="text.secondary">
             Bitte halte den QR‑Code vor die Kamera.
@@ -111,8 +123,8 @@ const QrVerifyDialog = ({ open, onClose }) => {
 
         <Box
           sx={{
-            width: 250,
-            height: 250,
+            width: 275,
+            height: 205,
             borderRadius: 2,
             overflow: 'hidden',
             bgcolor: status === 'idle' ? '#000' : 'transparent',
@@ -121,7 +133,8 @@ const QrVerifyDialog = ({ open, onClose }) => {
               : 'none',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            position: 'relative'
           }}
         >
           {status === 'idle' ? (

@@ -50,7 +50,19 @@ const QrScanner = ({ onScanSuccess, onError }) => {
     }
   }, [onScanSuccess, onError])
 
-  return <div id={readerId.current} style={{ width: '100%', height: '100%' }} />
+  return (
+    <div
+      id={readerId.current}
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    />
+  )
 }
 
 QrScanner.propTypes = {
