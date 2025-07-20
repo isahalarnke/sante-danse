@@ -6,12 +6,13 @@ import {
   IconButton,
   Typography
 } from '@mui/material'
+import PropTypes from 'prop-types'
 import CloseIcon from '@mui/icons-material/Close'
 import CancelIcon from '@mui/icons-material/Cancel'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import QrScanner from '../../Components/QrScanner'
 
-const QrVerifyDialog = ({ open, onClose }) => {
+const QrVerifyDialog = ({ open, onClose, onVerified }) => {
   const [status, setStatus] = useState('idle')
 
   useEffect(() => {
@@ -139,7 +140,10 @@ const QrVerifyDialog = ({ open, onClose }) => {
         >
           {status === 'idle' ? (
             <QrScanner
-              onScanSuccess={() => setStatus('success')}
+              onScanSuccess={() => {
+                setStatus('success')
+                if (onVerified) onVerified()
+              }}
               onError={() => setStatus('error')}
             />
           ) : (
@@ -149,6 +153,12 @@ const QrVerifyDialog = ({ open, onClose }) => {
       </Box>
     </Dialog>
   )
+}
+
+QrVerifyDialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  onVerified: PropTypes.func
 }
 
 export default QrVerifyDialog

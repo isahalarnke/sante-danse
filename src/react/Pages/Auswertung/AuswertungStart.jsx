@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Button, Snackbar, Typography, Box } from '@mui/material'
+import { Grid, Button, Snackbar, Box } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
@@ -13,7 +13,16 @@ const AuswertungStart = () => {
   const [showSnackbar, setShowSnackbar] = useState(false)
   const [openQRDialog, setOpenQRDialog] = useState(false)
   const [qrDialogKey, setQrDialogKey] = useState(0)
-  const daysLeft = 29
+  const [startDate, setStartDate] = useState(() => {
+    const saved = localStorage.getItem('countdownStart')
+    return saved
+      ? new Date(saved)
+      : new Date(Date.now() - 28 * 24 * 60 * 60 * 1000)
+  })
+  const daysLeft = Math.max(
+    0,
+    30 - Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24))
+  )
 
   useEffect(() => {
     setPainEntries(getPainEntries())
@@ -33,7 +42,7 @@ const AuswertungStart = () => {
           <SchmerzGraph />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={11}>
           <TagesCountdown daysLeft={daysLeft} />
         </Grid>
 
@@ -67,6 +76,11 @@ const AuswertungStart = () => {
         key={qrDialogKey}
         open={openQRDialog}
         onClose={closeScannerDialog}
+        onVerified={() => {
+          const now = new Date()
+          localStorage.setItem('countdownStart', now.toISOString())
+          setStartDate(now)
+        }}
       />
 
       <Snackbar
