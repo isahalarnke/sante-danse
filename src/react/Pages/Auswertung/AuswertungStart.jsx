@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Stack, Button, Typography, Box, Snackbar } from '@mui/material'
+import { Grid, Button, Snackbar, Typography } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
@@ -9,7 +8,6 @@ import TagesCountdown from './TageCountdown'
 import SchmerzGraph from './SchmerzGraph'
 
 const AuswertungStart = () => {
-  const navigate = useNavigate()
   const [painEntries, setPainEntries] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
@@ -35,12 +33,16 @@ const AuswertungStart = () => {
   }
 
   return (
-    <Stack sx={{ flex: 1, alignItems: 'center', gap: 3, px: 2, py: 4 }}>
-      <Box sx={{ width: '100%', maxWidth: 1000 }}>
+    <Grid container spacing={2} justifyContent="center" sx={{ px: 2, py: 4 }}>
+      <Grid item xs={12} md={12}>
         <SchmerzGraph />
-      </Box>
-      <TagesCountdown daysLeft={daysLeft} />
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      </Grid>
+
+      <Grid item xs={12} md={12}>
+        <TagesCountdown daysLeft={daysLeft} />
+      </Grid>
+
+      <Grid item xs={12} md={6} display="flex" justifyContent="center">
         <Button
           variant="outlined"
           startIcon={<AddIcon />}
@@ -57,14 +59,16 @@ const AuswertungStart = () => {
         >
           {isLoading ? 'Laden...' : 'Testdaten laden'}
         </Button>
-      </Box>
+      </Grid>
 
-      <PrimaryButton variant="contained" onClick={openScannerDialog}>
-        Med Team Bestätigen
-      </PrimaryButton>
+      <Grid item xs={12} display="flex" justifyContent="center">
+        <PrimaryButton variant="contained" onClick={openScannerDialog}>
+          Med Team Bestätigen
+        </PrimaryButton>
+      </Grid>
 
       <QrVerifyDialog
-        key={qrDialogKey} // 💡 erzwingt komplettes remounten & Status reset
+        key={qrDialogKey}
         open={openQRDialog}
         onClose={closeScannerDialog}
       />
@@ -75,7 +79,7 @@ const AuswertungStart = () => {
         onClose={handleCloseSnackbar}
         message="Testdaten erfolgreich geladen!"
       />
-    </Stack>
+    </Grid>
   )
 }
 
