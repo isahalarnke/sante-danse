@@ -8,7 +8,6 @@ import {
   Paper,
   Stack,
   Typography,
-  Box,
   AppBar,
   Toolbar
 } from '@mui/material'
