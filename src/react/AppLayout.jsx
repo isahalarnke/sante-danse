@@ -33,6 +33,10 @@ const AppLayout = () => {
   if (location.pathname.startsWith('/schmerzskala')) navigationIndex = 1
   if (location.pathname.startsWith('/auswertung')) navigationIndex = 2
 
+  const { pathname } = location
+
+  const isWelcomePage = pathname === '/'
+
   return (
     <Stack
       direction="row"
@@ -78,60 +82,63 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
-            <AppBar
-              position="static"
-              elevation={1}
-              sx={{
-                backgroundColor: '#c7bbeaff',
-                color: '#333'
-              }}
-            >
-              <Toolbar
+            {!isWelcomePage && (
+              <AppBar
+                position="static"
+                elevation={1}
                 sx={{
-                  justifyContent: 'space-between',
-                  maxHeight: 64,
-                  px: 2
+                  backgroundColor: '#c7bbeaff',
+                  color: '#333'
                 }}
               >
-                <Typography
-                  variant="h6"
+                <Toolbar
+                  sx={{
+                    justifyContent: 'space-between',
+                    minHeight: 56,
+                    px: 2
+                  }}
                 >
-                  Hallo,
-                  {' '}
-                  {localStorage.getItem('displayName')}
-                </Typography>
+                  <Typography variant="h6">
+                    Hallo,
+                    {' '}
+                    {localStorage.getItem('displayName')}
+                  </Typography>
 
-                <Box
-                  component="img"
-                  src={AppLogo}
-                  alt="App Logo"
-                  sx={{ height: 80, width: 80 }}
-                />
-              </Toolbar>
-            </AppBar>
+                  <Box
+                    component="img"
+                    src={AppLogo}
+                    alt="App Logo"
+                    sx={{ height: 60, width: 60 }}
+                  />
+                </Toolbar>
+              </AppBar>
+            )}
 
             <AppRoutes />
-            <BottomNavigation
-              showLabels
-              value={navigationIndex}
-              sx={{ width: '100%' }}
-            >
-              <BottomNavigationAction
-                label="Stundenplan"
-                icon={<KalenderIcon />}
-                onClick={() => navigate('/stundenplan')}
-              />
-              <BottomNavigationAction
-                label="Home"
-                icon={<HomeIcon />}
-                onClick={() => navigate('/home')}
-              />
-              <BottomNavigationAction
-                label="Auswertung"
-                icon={<AuswertungIcon />}
-                onClick={() => navigate('/auswertung')}
-              />
-            </BottomNavigation>
+
+            {!isWelcomePage && (
+              <BottomNavigation
+                showLabels
+                value={navigationIndex}
+                sx={{ width: '100%' }}
+              >
+                <BottomNavigationAction
+                  label="Stundenplan"
+                  icon={<KalenderIcon />}
+                  onClick={() => navigate('/stundenplan')}
+                />
+                <BottomNavigationAction
+                  label="Home"
+                  icon={<HomeIcon />}
+                  onClick={() => navigate('/home')}
+                />
+                <BottomNavigationAction
+                  label="Auswertung"
+                  icon={<AuswertungIcon />}
+                  onClick={() => navigate('/auswertung')}
+                />
+              </BottomNavigation>
+            )}
           </Stack>
         </Paper>
       </Container>
