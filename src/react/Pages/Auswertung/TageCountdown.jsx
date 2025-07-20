@@ -21,7 +21,7 @@ const TagesCountdown = ({ daysLeft }) => {
         variant="determinate"
         value={progress}
         color={color}
-        sx={{ height: 10, borderRadius: 5 }}
+        sx={{ height: 10, borderRadius: 3 }}
       />
     </Box>
   )

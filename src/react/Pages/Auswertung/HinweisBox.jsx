@@ -15,7 +15,7 @@ const HinweisBox = ({ daysLeft }) => {
   }
 
   return (
-    <Alert severity={severity} variant="outlined">
+    <Alert severity={severity} variant="outlined" sx={{ borderRadius: 0.3 }}>
       <Typography variant="body2">{message}</Typography>
     </Alert>
   )

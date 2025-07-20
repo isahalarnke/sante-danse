@@ -70,7 +70,7 @@ const AuswertungStart = () => {
           </Button>
         </Grid>
 
-        <Grid item xs={12} display="flex" justifyContent="center">
+        <Grid item xs={9} display="flex" justifyContent="center">
           <PrimaryButton variant="contained" onClick={openScannerDialog}>
             Bestätigung durch das Medizinische Team starten
           </PrimaryButton>
