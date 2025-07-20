@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
-import CloseIcon from '@mui/icons-material/Close'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import { Stack, Button, Typography, Box, Snackbar, Dialog, DialogTitle, IconButton } from '@mui/material'
+import { Stack, Button, Typography, Box, Snackbar } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
-import QrScanner from '../../Components/QrScanner'
+import QrVerifyDialog from './QrVerifyDialog'
 import SchmerzGraph from './SchmerzGraph'
 
 const AuswertungStart = () => {
@@ -15,16 +14,10 @@ const AuswertungStart = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
   const [openQRDialog, setOpenQRDialog] = useState(false)
-  const [scanSuccess, setScanSuccess] = useState(false)
 
-  // Beim ersten Render Einträge laden
   useEffect(() => {
     setPainEntries(getPainEntries())
   }, [])
-
-  const handleScanSuccess = () => {
-    setScanSuccess(true)
-  }
 
   const handleCloseSnackbar = () => {
     setShowSnackbar(false)
@@ -63,70 +56,7 @@ const AuswertungStart = () => {
         Med Team Bestätigen
       </PrimaryButton>
 
-      <Dialog
-        open={openQRDialog}
-        onClose={() => { setOpenQRDialog(false); setScanSuccess(false) }}
-        fullWidth
-        maxWidth="xs"
-        PaperProps={{
-          sx: {
-            width: '90vw',
-            maxWidth: 320,
-            borderRadius: 3,
-            bgcolor: scanSuccess ? '#e6f9ec' : 'background.paper'
-          }
-        }}
-      >
-        <DialogTitle sx={{ pr: 5 }}>
-          {scanSuccess ? 'Verifizierung erfolgreich' : 'QR‑Code scannen'}
-          <IconButton
-            aria-label="close"
-            onClick={() => { setOpenQRDialog(false); setScanSuccess(false) }}
-            sx={{ position: 'absolute', right: 8, top: 8 }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-
-        <Box
-          sx={{
-            px: 3,
-            pb: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center'
-          }}
-        >
-          {!scanSuccess ? (
-            <>
-              <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
-                Bitte halte den QR‑Code vor die Kamera.
-              </Typography>
-              <Box
-                sx={{
-                  position: 'relative',
-                  width: 250,
-                  height: 225,
-                  border: '1px solid rgba(255,255,255,0.4)',
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                  bgcolor: '#000'
-                }}
-              >
-                <QrScanner onScanSuccess={handleScanSuccess} />
-              </Box>
-            </>
-          ) : (
-            <>
-              <CheckCircleIcon sx={{ fontSize: 60, color: 'green', mb: 2 }} />
-              <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                Dein Eintrag wurde bestätigt!
-              </Typography>
-            </>
-          )}
-        </Box>
-      </Dialog>
+      <QrVerifyDialog open={openQRDialog} onClose={() => setOpenQRDialog(false)} />
 
       <Snackbar
         open={showSnackbar}
@@ -136,6 +66,11 @@ const AuswertungStart = () => {
       />
     </Stack>
   )
+}
+
+QrVerifyDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired
 }
 
 export default AuswertungStart
