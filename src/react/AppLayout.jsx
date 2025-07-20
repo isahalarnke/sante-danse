@@ -7,7 +7,10 @@ import {
   Container,
   Paper,
   Stack,
-  Typography
+  Typography,
+  Box,
+  AppBar,
+  Toolbar
 } from '@mui/material'
 
 import {
@@ -16,7 +19,7 @@ import {
   Leaderboard as AuswertungIcon
 } from '@mui/icons-material'
 
-import AppLogo from '../assets/favicon.png'
+import AppLogo from '../assets/AppLogo.png'
 import AppRoutes from './AppRoutes'
 
 const borderRadius = 6
@@ -50,24 +53,6 @@ const AppLayout = () => {
           height: '100%'
         }}
       >
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          marginBottom={2}
-        >
-          <img
-            src={AppLogo}
-            alt="App Logo"
-            style={{
-              width: '40px',
-              height: '40px'
-            }}
-          />
-          <Typography variant="h5">
-            SantéDanse
-          </Typography>
-        </Stack>
         <Paper
           elevation={6}
           sx={{
@@ -93,6 +78,38 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
+            <AppBar
+              position="static"
+              elevation={1}
+              sx={{
+                backgroundColor: '#c7bbeaff',
+                color: '#333'
+              }}
+            >
+              <Toolbar
+                sx={{
+                  justifyContent: 'space-between',
+                  maxHeight: 64,
+                  px: 2
+                }}
+              >
+                <Typography
+                  variant="h6"
+                >
+                  Hallo,
+                  {' '}
+                  {localStorage.getItem('displayName')}
+                </Typography>
+
+                <Box
+                  component="img"
+                  src={AppLogo}
+                  alt="App Logo"
+                  sx={{ height: 80, width: 80 }}
+                />
+              </Toolbar>
+            </AppBar>
+
             <AppRoutes />
             <BottomNavigation
               showLabels
