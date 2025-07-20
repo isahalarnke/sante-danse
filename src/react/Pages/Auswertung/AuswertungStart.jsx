@@ -5,6 +5,7 @@ import { Add as AddIcon } from '@mui/icons-material'
 import PrimaryButton from '../../Components/Buttons/PrimaryButton'
 import { getPainEntries, loadDummyData } from '../../../hooks/usePainEntries'
 import QrVerifyDialog from './QrVerifyDialog'
+import TagesCountdown from './TageCountdown'
 import SchmerzGraph from './SchmerzGraph'
 
 const AuswertungStart = () => {
@@ -14,6 +15,7 @@ const AuswertungStart = () => {
   const [showSnackbar, setShowSnackbar] = useState(false)
   const [openQRDialog, setOpenQRDialog] = useState(false)
   const [qrDialogKey, setQrDialogKey] = useState(0)
+  const daysLeft = 29
 
   useEffect(() => {
     setPainEntries(getPainEntries())
@@ -37,12 +39,8 @@ const AuswertungStart = () => {
       <Box sx={{ width: '100%', maxWidth: 1000 }}>
         <SchmerzGraph />
       </Box>
-
+      <TagesCountdown daysLeft={daysLeft} />
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-        <Typography variant="body2" color="text.secondary">
-          Schmerzeinträge:
-            {painEntries.length}
-        </Typography>
         <Button
           variant="outlined"
           startIcon={<AddIcon />}
