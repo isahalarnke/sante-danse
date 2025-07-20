@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Html5Qrcode, Html5QrcodeState } from 'html5-qrcode'
+import { Html5Qrcode, Html5QrcodeScannerState } from 'html5-qrcode'
 import PropTypes from 'prop-types'
 
 const expectedQRCode = 'ERFOLGREICH VERIFIZIERT'
@@ -18,8 +18,8 @@ const QrScanner = ({ onScanSuccess, onError }) => {
       if (hasStopped) return
       hasStopped = true
       if (
-        scanner.getState() === Html5QrcodeState.SCANNING ||
-        scanner.getState() === Html5QrcodeState.PAUSED
+        scanner.getState() === Html5QrcodeScannerState.SCANNING ||
+        scanner.getState() === Html5QrcodeScannerState.PAUSED
       ) {
         await scanner.stop()
       }
