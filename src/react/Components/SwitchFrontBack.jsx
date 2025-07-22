@@ -26,7 +26,7 @@ const SwitchFrontBack = ({ checked, onChange }) => (
     <PinkSwitch
       checked={checked}
       onChange={onChange}
-      inputProps={{ 'aria-label': 'Front/Back switch' }}
+      slotProps={{ 'aria-label': 'Front/Back switch' }}
     />
     <Typography>Hinten</Typography>
   </Stack>
