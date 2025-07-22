@@ -5,27 +5,44 @@ import PropTypes from 'prop-types'
 import { getPainEntries } from '../../../hooks/usePainEntries'
 
 // Benutzerdefinierter Tooltip für das Liniendiagramm
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload, label, visiblePart }) => {
   if (active && payload && payload.length) {
-    const item = payload[0]
     const painEntries = window.painEntries || []
-    const entry = painEntries.find(
-      e => e.bodyPart === item.dataKey &&
-      new Date(e.date).toISOString().slice(0, 10) === label
-    )
-    const movements = entry?.movements?.join(', ') || '-'
     return (
-      <Box sx={{ background: '#fff', border: '1px solid #ccc', p: 1 }}>
+      <Box sx={{ p: 1 }}>
         <Typography variant="body2">
           <b>Datum:</b>
           <br />
           {label}
         </Typography>
-        <Typography variant="body2">
-          <b>Bewegung:</b>
-          <br />
-          {movements}
-        </Typography>
+        {payload.map((item) => {
+          const entries = painEntries.filter(
+            e => e.bodyPart === item.dataKey &&
+            new Date(e.date).toISOString().slice(0, 10) === label
+          )
+          const allMovements = Array.from(new Set(entries.flatMap(e => e.movements || [])))
+          if (visiblePart) {
+            return (
+              <Typography key={item.dataKey} variant="body2" sx={{ mt: 1 }}>
+                <b>Bewegung:</b>
+                {' '}
+                {allMovements.length > 0 ? allMovements.join(', ') : '-'}
+              </Typography>
+            )
+          }
+          return (
+            <Box key={item.dataKey} sx={{ mt: 1 }}>
+              <Typography variant="body2">
+                <b>{item.dataKey}</b>
+              </Typography>
+              <Typography variant="body2">
+                <b>Bewegung:</b>
+                {' '}
+                {allMovements.length > 0 ? allMovements.join(', ') : '-'}
+              </Typography>
+            </Box>
+          )
+        })}
       </Box>
     )
   }
@@ -38,7 +55,8 @@ CustomTooltip.propTypes = {
     dataKey: PropTypes.string,
     value: PropTypes.number
   })),
-  label: PropTypes.string
+  label: PropTypes.string,
+  visiblePart: PropTypes.string
 }
 
 const SchmerzGraph = () => {
@@ -116,10 +134,41 @@ const SchmerzGraph = () => {
                 />
               )
             ))}
-            <XAxis dataKey="date" />
-            <YAxis width={20} tickMargin={2} />
-            <Tooltip content={<CustomTooltip />} />
-            <Legend onClick={handleLegendClick} verticalAlign="bottom" height={36} />
+            <XAxis dataKey="date" padding={{ left: 20, right: 20 }} />
+            <YAxis
+              width={28}
+              tickMargin={2}
+              domain={[0, 10]}
+              allowDecimals={false}
+              ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            />
+            <Tooltip
+              content={<CustomTooltip visiblePart={visiblePart} />}
+              wrapperStyle={{
+                maxHeight: 160,
+                overflowY: 'auto',
+                minWidth: 120,
+                pointerEvents: 'auto',
+                background: '#fff',
+                border: '1px solid #ccc',
+                zIndex: 1000
+              }}
+            />
+            <Legend
+              onClick={handleLegendClick}
+              verticalAlign="bottom"
+              align="center"
+              height={48}
+              wrapperStyle={{
+                width: '100%',
+                display: 'block',
+                whiteSpace: 'nowrap',
+                overflowX: 'auto',
+                overflowY: 'hidden',
+                paddingBottom: 8,
+                zIndex: 1
+              }}
+            />
           </LineChart>
         </ResponsiveContainer>
       )}

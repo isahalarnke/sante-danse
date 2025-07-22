@@ -1,4 +1,4 @@
-import { dummyPainData } from '../data/dummyPainData'
+import dummyPainData from '../data/dummyPainData'
 
 export function getPainEntries() {
   try {
