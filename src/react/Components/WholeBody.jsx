@@ -580,6 +580,6 @@ WholeBody.propTypes = {
   clickedBodyPart: PropTypes.string,
   setClickedBodyPart: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  isBack: PropTypes.bool
+  isBack: PropTypes.bool.isRequired
 }
 export default WholeBody

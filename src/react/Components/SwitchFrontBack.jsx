@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { alpha, styled } from '@mui/material/styles'
 import { pink } from '@mui/material/colors'
-import { Switch } from '@mui/material'
-import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
+import { Switch, Stack, Typography } from '@mui/material'
 
 // PinkSwitch Code direkt aus Material UI übernommen
 
@@ -26,7 +24,7 @@ const SwitchFrontBack = ({ checked, onChange }) => (
     <PinkSwitch
       checked={checked}
       onChange={onChange}
-      inputProps={{ 'aria-label': 'Front/Back switch' }}
+      slotProps={{ 'aria-label': 'Front/Back switch' }}
     />
     <Typography>Hinten</Typography>
   </Stack>
